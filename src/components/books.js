@@ -1,12 +1,25 @@
 import React from 'react';
+import { PageHeader, Input } from 'antd';
+import BookGrid from './bookgrid';
 
-function Books(props) {
+const { Search } = Input;
+
+function Home(props) {
+  
   return (
-    <>
-      <h1>Books</h1>
-      <p>This is where books will be displayed</p>
-    </>
+      <div className="site-layout-content">
+        <div style={{ padding: '2% 20%' }}>
+          <Search placeholder="input search text"
+            allowClear
+            enterButton="Search"
+            size="large"
+            onSearch={null}/>
+          <PageHeader className="site-page-header"
+            title="Books in the Database"/>
+        </div>  
+        <BookGrid />
+      </div>
   );
 }
 
-export default Books;
+export default Home;
