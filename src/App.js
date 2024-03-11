@@ -9,11 +9,14 @@ import './App.css';
 
 import Nav from './components/nav';
 import Account from './components/account';
+import Users from './components/users';
 import Home from './components/home';
 import Books from './components/books';
 import Book from './components/book'; 
 import Authors from './components/authors';
+import Author from './components/author';
 import Genres from './components/genres';
+import Genre from './components/genre'; 
 import Login from './components/login';
 import Register from './components/register';
 
@@ -29,11 +32,14 @@ function App() {
       <Content>
         <Switch>
           <Route path="/" children={<Home />} exact />
+          <Route path="/books/:id" children={<Book />} />
           <Route path="/books" children={<Books />} />
-          <Route path="/book/:id" children={<Book />} /> 
+          <Route path="/authors/:id" children={<Author />} />
           <Route path="/authors" children={<Authors />} />
+          <Route path="/genres/:id" children={<Genre />} />
           <Route path="/genres" children={<Genres />} />
-          <Route path="/account" children={<Account />} />
+          <Route path="/users/:id" children={<Account />} />
+          <Route path="/users" children={<Users />} />
           <Route path="/login" children={<Login />} />
           <Route path="/register" children={<Register />} />
         </Switch>

@@ -1,0 +1,51 @@
+{
+    "1": {
+        "id": 1, 
+        "firstName": "Author", 
+        "lastName": "1",
+        "description": "The first author.",
+        "avatarURL": "https://imgupscaler.com/images/samples/animal-before.webp"
+    },
+    "2":{
+        "id": 2, 
+        "firstName": "Author", 
+        "lastName": "2",
+        "description": "The second author.",
+        "avatarURL": "https://imgupscaler.com/images/samples/animal-before.webp"
+    },
+    "3":{
+        "id": 3, 
+        "firstName": "Author", 
+        "lastName": "3",
+        "description": "The third author.",
+        "avatarURL": "https://imgupscaler.com/images/samples/animal-before.webp"
+    },
+    "4":{
+        "id": 4, 
+        "firstName": "Author", 
+        "lastName": "4",
+        "description": "The forth author.",
+        "avatarURL": "https://imgupscaler.com/images/samples/animal-before.webp"
+    },
+    "5":{
+        "id": 5, 
+        "firstName": "Author", 
+        "lastName": "5",
+        "description": "The fifth author.",
+        "avatarURL": "https://imgupscaler.com/images/samples/animal-before.webp"
+    },
+    "6":{
+        "id": 6, 
+        "firstName": "Author", 
+        "lastName": "6",
+        "description": "The sixth author.",
+        "avatarURL": "https://imgupscaler.com/images/samples/animal-before.webp"
+    },
+    "7":{
+        "id": 7, 
+        "firstName": "Author", 
+        "lastName": "7",
+        "description": "The seventh author.",
+        "avatarURL": "https://imgupscaler.com/images/samples/animal-before.webp"
+    }
+}

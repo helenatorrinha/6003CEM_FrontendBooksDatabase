@@ -11,7 +11,7 @@ class BookCard extends React.Component {
     return (
       <Card
         style={{ width: 320 }}
-        cover={<NavImage alt={`Post ${bookID}`} src={this.props.imageURL} to={`/book/${bookID}`} />}
+        cover={<NavImage alt={`Post ${bookID}`} src={this.props.imageURL} to={`/books/${bookID}`} />}
         hoverable={true}>
         
         <Meta title={this.props.title} description={this.props.summary} />

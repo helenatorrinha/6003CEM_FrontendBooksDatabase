@@ -1,12 +1,18 @@
 import React from 'react';
+import { PageHeader } from 'antd';
+import GenreGrid from './genregrid';
 
-function Genres(props) {
+function Home(props) {
+  
   return (
-    <>
-      <h1>Genres</h1>
-      <p>This is where genres will be displayed</p>
-    </>
+      <div className="site-layout-content">
+        <div style={{ padding: '2% 20%' }}>
+          <PageHeader className="site-page-header"
+            title="Genres of books in the Database"/>
+        </div>  
+        <GenreGrid />
+      </div>
   );
 }
 
-export default Genres;
+export default Home;

@@ -4,38 +4,38 @@ import { Image, Row, Col, Typography } from 'antd'
 
 const { Title, Paragraph } = Typography;
 
-class Account extends React.Component {
+class Author extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      account: undefined
+      author: undefined
     }
   }
 
   componentDidMount() {
     const id = this.props.match.params.id; // available using withRouter()
     this.setState({
-      account: require('../data/users.json')[id]
+      author: require('../data/authors.json')[id]
     })
   }
 
   render() {
-    if (!this.state.account) {
-      return <h3>Loading user...</h3>
+    if (!this.state.author) {
+      return <h3>Loading author...</h3>
     }
-    const account = this.state.account;
+    const author = this.state.author;
 
     return (
       <div>
         <Row type="flex" justify="space-around" align="middle">
           <Col span={6} align="center">
-            <Image width={200} alt="Account" src={account.avatarURL} />
+            <Image width={200} alt="Author" src={author.avatarURL} />
           </Col>
           <Col span={12}>
-            <Title>{`${account.firstName} ${account.lastName}`}</Title>
-            <Paragraph>Username: {account.username}</Paragraph>
-            <Paragraph>Email: {account.email}</Paragraph>
+            <Title>{`${author.firstName} ${author.lastName}`}</Title>
+            <Paragraph>Author ID: {author.id}</Paragraph>
+            <Paragraph>{author.description}</Paragraph>
           </Col>
         </Row>
       </div>
@@ -43,4 +43,4 @@ class Account extends React.Component {
   }
 }
 
-export default withRouter(Account);
+export default withRouter(Author);

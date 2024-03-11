@@ -34,6 +34,11 @@ class Book extends React.Component {
           </Col>
           <Col span={12}>
             <Title>{book.title}</Title>
+            <Paragraph>Book ID: {book.id}</Paragraph>
+            <Paragraph>Author: {book.author}</Paragraph>
+            <Paragraph>Genre: {book.genre}</Paragraph>
+            <Paragraph>ISBN: {book.ISBN}</Paragraph>
+            <Paragraph>Publication Date: {book.publicationDate}</Paragraph>
             <Paragraph>{book.description}</Paragraph>
           </Col>
         </Row>

@@ -11,7 +11,8 @@ function Nav(props) {
         <Menu.Item key="2"><Link to="/books">Books</Link></Menu.Item>
         <Menu.Item key="3"><Link to="/authors">Authors</Link></Menu.Item>
         <Menu.Item key="4"><Link to="/genres">Genres</Link></Menu.Item>
-        <Menu.Item key="5"><Link to="/account">Account</Link></Menu.Item>       
+        <Menu.Item key="5"><Link to="/users/1">Account</Link></Menu.Item> 
+        <Menu.Item key="5"><Link to="/users">Users</Link></Menu.Item>  
         <Menu.Item key="6"><Link to="/login">Login</Link></Menu.Item>   
         <Menu.Item key="7"><Link to="/register">Register</Link></Menu.Item> 
         <Menu.Item key="8"><Link to="/logout">Logout</Link></Menu.Item>  

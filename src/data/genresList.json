@@ -1,0 +1,36 @@
+[{
+    "id": 1, 
+    "name": "Genre 1", 
+    "description": "The first genre."
+},
+{
+    "id": 2, 
+    "name": "Genre 2", 
+    "description": "The second genre."
+},
+{
+    "id": 3, 
+    "name": "Genre 3", 
+    "description": "The third genre."
+},
+{
+    "id": 4, 
+    "name": "Genre 4", 
+    "description": "The forth genre."
+},
+{
+    "id": 5, 
+    "name": "Genre 5", 
+    "description": "The fifth genre."
+},
+{
+    "id": 6, 
+    "name": "Genre 6", 
+    "description": "The sixth genre."
+},
+{
+    "id": 7, 
+    "name": "Genre 7", 
+    "description": "The seventh genre."
+}
+]
