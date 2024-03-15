@@ -56,7 +56,6 @@ const avatarURLRules = [
 ]
 
 
-
 /**
  * Registration form component for app signup.
  */
@@ -70,7 +69,7 @@ class RegistrationForm extends React.Component {
   onFinish = (values) => {
     console.log('Received values of form: ', values);
     const { confirm, ...data } = values;  // ignore the 'confirm' value in data sent
-    fetch('http://localhost:3030/api/v1/users', {
+    fetch('http://localhost:3030/api/v1/users/', {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -80,12 +79,23 @@ class RegistrationForm extends React.Component {
     .then(status)
     .then(json)
     .then(data => {
-        // TODO: display success message and/or redirect
-        console.log(data);
-        alert("User added")
+        alert("Registration successful!");
+        window.location.href = "/login"; // Redirect to another page
+
     })
     .catch(error => {
-        // TODO: show nicely formatted error message and clear form
+        const showError = (errorMessage) => {
+          console.error(errorMessage);
+          alert(`Error: ${errorMessage}`);
+        };
+
+        const clearForm = () => {
+          document.querySelector('form').reset(); // clear the form
+        };
+
+        // Call the functions to show error message and clear form
+        showError('An error occurred while submitting the form');
+        clearForm();
         alert(`Error: ${JSON.stringify(error)}`);
     });  
   };
