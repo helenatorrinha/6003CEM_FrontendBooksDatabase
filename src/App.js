@@ -13,6 +13,7 @@ import Users from './components/users';
 import Home from './components/home';
 import Books from './components/books';
 import Book from './components/book'; 
+import AddBook from './components/addbook';
 import Authors from './components/authors';
 import Author from './components/author';
 import Genres from './components/genres';
@@ -32,6 +33,7 @@ function App() {
       <Content>
         <Switch>
           <Route path="/" children={<Home />} exact />
+          <Route path="/books/add" children={<AddBook />} />
           <Route path="/books/:id" children={<Book />} />
           <Route path="/books" children={<Books />} />
           <Route path="/authors/:id" children={<Author />} />
