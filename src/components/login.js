@@ -11,54 +11,64 @@ const tailFormItemLayout = {
   wrapperCol: { xs: { span: 24, offset: 0 }, sm: { span: 16, offset: 6 } },
 };
 
-// define validation rules for the form fields
-const usernameRules = [
-  { required: true, message: 'Please input your username!', whitespace: true }
-]
-
-const passwordRules = [
-    { required: true, message: 'Please input your password!' }
-];
-
 class LoginForm extends React.Component {
 
   constructor(props) {
       super(props);
-      this.onFinish = this.onFinish.bind(this);
+      this.login = this.login.bind(this);
   }
   
-  onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    const { confirm, ...data } = values;  // ignore the 'confirm' value in data sent
-    fetch('http://localhost:3030/api/v1/users', {
+  login(values) {
+    const {username, password} = values;
+    console.log(`logging in user: ${username}`)
+    fetch('http://localhost:3030/api/v1/login', {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify({username, password}),
         headers: {
-            "Content-Type": "application/json"
+          "Content-Type": "application/json"
         }        
     })
     .then(status)
     .then(json)
-    .then(data => {
-        // TODO: display success message and/or redirect
-        console.log(data);
-        alert("User added")
+    .then(user => {
+        localStorage.setItem('token', user.accessToken);
+        console.log('Logged in successfully');
+        alert("Login successful!");
+        window.location.href = "/"; // Redirect to another page
     })
     .catch(error => {
-        // TODO: show nicely formatted error message and clear form
-        alert(`Error: ${JSON.stringify(error)}`);
+      const showError = (errorMessage) => {
+        console.error(errorMessage);
+        alert(`Error: ${errorMessage}`);
+      };
+
+      const clearForm = () => {
+        document.querySelector('form').reset(); // clear the form
+      };
+
+      // Call the functions to show error message and clear form
+      showError('An error occurred while submitting the form');
+      clearForm();
+      alert(`Error: ${JSON.stringify(error)}`);
+
+      console.log('Login failed');
     });  
-  };
+  }
   
   render() {
     return (
-      <Form {...formItemLayout} name="register" onFinish={this.onFinish} scrollToFirstError >
+      <Form {...formItemLayout} name="login" onFinish={this.login} scrollToFirstError >
       
-        <Form.Item name="username" label="Username" rules={usernameRules} >
+        <Form.Item name="username" 
+          label="Username" 
+          rules= {[{ required: true, message: 'Please input your username!', whitespace: true }]} >
             <Input />
         </Form.Item>
 
-        <Form.Item name="password" label="Password" rules={passwordRules} hasFeedback >
+        <Form.Item 
+          name="password" 
+          label="Password" 
+          rules= {[{ required: true, message: 'Please input your password!' }]} >
             <Input.Password />
         </Form.Item>
 
@@ -66,6 +76,7 @@ class LoginForm extends React.Component {
             <Button type="primary" htmlType="submit">
                 Login
             </Button>
+            Or <a href="/register">Register here!</a>
         </Form.Item>
       </Form>
     );

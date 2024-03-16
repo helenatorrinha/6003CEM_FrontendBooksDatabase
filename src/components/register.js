@@ -51,10 +51,6 @@ const confirmRules = [
     })
 ];
 
-const avatarURLRules = [
-  { required: true, message: 'Please input your avatar URL!', whitespace: true }
-]
-
 
 /**
  * Registration form component for app signup.
@@ -129,7 +125,7 @@ class RegistrationForm extends React.Component {
             <Input.Password />
         </Form.Item>
 
-        <Form.Item name="avatarURL" label="Avatar URL" rules={avatarURLRules} >
+        <Form.Item name="avatarURL" label="Avatar URL" >
             <Input />
         </Form.Item>
 
