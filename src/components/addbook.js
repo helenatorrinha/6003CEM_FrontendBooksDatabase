@@ -45,8 +45,14 @@ class AddBookForm extends React.Component {
   }
   
   onFinish = (values) => {
-    console.log('Received values of form: ', values);
-    const { confirm, ...data } = values;  // ignore the 'confirm' value in data sent
+    const formData = { ...values };
+
+    if (formData.publicationDate) { // If publicationDate exists
+      formData.publicationDate = formData.publicationDate.format('YYYY-MM-DD');
+    }
+
+    const { confirm, ...data } = formData; 
+
     fetch('http://localhost:3030/api/v1/books/', {
       method: "POST",
       body: JSON.stringify(data),
@@ -75,7 +81,7 @@ class AddBookForm extends React.Component {
         // Call the functions to show error message and clear form
         showError('An error occurred while submitting the form');
         clearForm();
-        alert(`Error: ${JSON.stringify(error)}`);
+        alert(`${JSON.stringify(error)}`);
     });  
   };
   
@@ -100,7 +106,9 @@ class AddBookForm extends React.Component {
         </Form.Item>
 
         <Form.Item name="publicationDate" label="Publication Date" rules={PublicationDateRules}>
-            <DatePicker />
+          <DatePicker
+            format="YYYY-MM-DD"
+          />
         </Form.Item>
 
         <Form.Item name="description" label="Description" >
