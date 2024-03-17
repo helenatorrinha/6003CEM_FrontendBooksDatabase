@@ -1,35 +1,63 @@
 import React from 'react';
-import { Col, Row } from 'antd';
+import { Col, Row, Spin, Alert } from 'antd';
 import BookCard from './bookcard';
 
 class BookGrid extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      books: []
-    }
+      books: [],
+      loading: true, // Add loading state
+      error: null, // Add error state
+    };
   }
 
   componentDidMount() {
-    this.setState({
-        books: require('../data/booksList.json')
+    fetch('http://localhost:3030/api/v1/books', {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        // Include the authorization token if your API requires authentication
+        "Authorization": "Bearer " + localStorage.getItem("token"),
+      },
     })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch books.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      this.setState({ books: data, loading: false }); // Set books data and update loading state
+    })
+    .catch(error => {
+      this.setState({ error: error.message, loading: false }); // Set error message and update loading state
+    });
   }
 
   render() {
-    if (!this.state.books.length) {
-      return <h3>Loading books...</h3>
+    const { books, loading, error } = this.state;
+
+    // Display a spinner while the request is being made
+    if (loading) {
+      return <Spin size="large" />;
     }
-    const cardList = this.state.books.map(book => {
-      return (
-        <div style={{padding:"10px"}} key={book.id}>
-          <Col span={6}>
-            <BookCard {...book} />
-          </Col>
-        </div>
-      )
-    });
+
+    // Display an error message if an error occurred
+    if (error) {
+      return <Alert message="Error" description={error} type="error" showIcon />;
+    }
+
+    // Render the books if data is successfully fetched
+    const cardList = books.map(book => (
+      <div style={{padding: "10px"}} key={book.id}>
+        <Col span={6}>
+          <BookCard {...book} />
+        </Col>
+      </div>
+    ));
+
     return (
       <Row type="flex" justify="space-around">
         {cardList}
