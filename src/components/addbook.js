@@ -65,7 +65,7 @@ class AddBookForm extends React.Component {
     .then(json)
     .then(data => {
       alert("Book Added successfully!");
-      window.location.href = "/books/" + data.id; // Redirect to another page
+      window.location.href = "/books/" + data.ID; // Redirect to another page
 
     })
     .catch(error => {
