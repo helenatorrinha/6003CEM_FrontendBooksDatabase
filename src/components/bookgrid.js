@@ -18,7 +18,7 @@ class BookGrid extends React.Component {
       headers: {
         "Content-Type": "application/json",
         // Include the authorization token if your API requires authentication
-        "Authorization": "Bearer " + localStorage.getItem("token"),
+        "Authorization": "Bearer " + sessionStorage.getItem("token"),
       },
     })
     .then(response => {
