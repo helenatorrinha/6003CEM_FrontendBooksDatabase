@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import { Form, Input, Button, message } from 'antd';
 import { status, json } from '../utilities/requestHandlers';
 import { withRouter } from 'react-router-dom'; 
+import UserContext from '../contexts/user';
 
 function EditAuthor(props) {
   const [form] = Form.useForm();
   const { id } = useParams(); // Get author ID from URL parameters
   const [loading, setLoading] = useState(false);
+  const { user } = React.useContext(UserContext);
 
   useEffect(() => {
     // Fetch author details for editing
@@ -63,29 +65,35 @@ function EditAuthor(props) {
   };
 
   return (
-    <Form form={form} onFinish={handleSubmit} layout="vertical">
-        <Form.Item name="firstName" label="Author's First Name" rules={[{ required: true }]}>
-            <Input />
-        </Form.Item>
+    <>
+     {user.role === 'admin' ? (
+      <Form form={form} onFinish={handleSubmit} layout="vertical">
+          <Form.Item name="firstName" label="Author's First Name" rules={[{ required: true }]}>
+              <Input />
+          </Form.Item>
 
-        <Form.Item name="lastName" label="Author's Last Name" rules={[{ required: true }]}>
-            <Input />
-        </Form.Item>
+          <Form.Item name="lastName" label="Author's Last Name" rules={[{ required: true }]}>
+              <Input />
+          </Form.Item>
 
-        <Form.Item name="description" label="Description">
-            <Input />
-        </Form.Item>
+          <Form.Item name="description" label="Description">
+              <Input />
+          </Form.Item>
 
-        <Form.Item name="avatarURL" label="Avatar URL">
-            <Input />
-        </Form.Item>
+          <Form.Item name="avatarURL" label="Avatar URL">
+              <Input />
+          </Form.Item>
 
-        <Form.Item>
-        <Button type="primary" htmlType="submit" loading={loading}>
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+          <Form.Item>
+          <Button type="primary" htmlType="submit" loading={loading}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    ) : (
+      <h1>Access Denied</h1>
+    )}
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Form, Input, Button, message } from 'antd';
 import { status, json } from '../utilities/requestHandlers';
 import { withRouter } from 'react-router-dom'; 
+import UserContext from '../contexts/user';
 
 // define validation rules for the form fields
 const firstNameRules = [
@@ -33,6 +34,7 @@ function EditUser(props) {
   const [form] = Form.useForm();
   const { id } = useParams(); // Get genre ID from URL parameters
   const [loading, setLoading] = useState(false);
+  const { user } = React.useContext(UserContext);
 
   useEffect(() => {
     // Fetch user details for editing
@@ -98,37 +100,43 @@ function EditUser(props) {
   };
 
   return (
-    <Form form={form} onFinish={handleSubmit} layout="vertical">
-        <Form.Item name="firstName" label="First Name" rules={firstNameRules} >
-            <Input />
-        </Form.Item>
+    <>
+    { user.loggedIn ? (
+      <Form form={form} onFinish={handleSubmit} layout="vertical">
+          <Form.Item name="firstName" label="First Name" rules={firstNameRules} >
+              <Input />
+          </Form.Item>
 
-        <Form.Item name="lastName" label="Last Name" rules={lastNameRules} >
-            <Input />
-        </Form.Item>
+          <Form.Item name="lastName" label="Last Name" rules={lastNameRules} >
+              <Input />
+          </Form.Item>
 
-        <Form.Item name="username" label="Username" rules={usernameRules} >
-            <Input />
-        </Form.Item>
+          <Form.Item name="username" label="Username" rules={usernameRules} >
+              <Input />
+          </Form.Item>
 
-        <Form.Item name="email" label="E-mail" rules={emailRules} >
-            <Input />
-        </Form.Item>
+          <Form.Item name="email" label="E-mail" rules={emailRules} >
+              <Input />
+          </Form.Item>
 
-        <Form.Item name="password" label="Password" rules={passwordRules} >
-            <Input.Password />
-        </Form.Item>
+          <Form.Item name="password" label="Password" rules={passwordRules} >
+              <Input.Password />
+          </Form.Item>
 
-        <Form.Item name="avatarURL" label="Avatar URL" >
-            <Input />
-        </Form.Item>
+          <Form.Item name="avatarURL" label="Avatar URL" >
+              <Input />
+          </Form.Item>
 
-        <Form.Item>
-        <Button type="primary" htmlType="submit" loading={loading}>
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+          <Form.Item>
+          <Button type="primary" htmlType="submit" loading={loading}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    ) : (
+      <h1>Access Denied</h1>
+    )}
+    </>
   );
 }
 

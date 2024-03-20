@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Form, Input, Button, message } from 'antd';
 import { status, json } from '../utilities/requestHandlers';
 import { withRouter } from 'react-router-dom'; 
+import UserContext from '../contexts/user';
 
 const NameRules = [
     { required: true, message: "Please input the genre's name!" },
@@ -13,6 +14,7 @@ function EditGenre(props) {
   const [form] = Form.useForm();
   const { id } = useParams(); // Get genre ID from URL parameters
   const [loading, setLoading] = useState(false);
+  const { user } = React.useContext(UserContext);
 
   useEffect(() => {
     // Fetch genre details for editing
@@ -66,21 +68,27 @@ function EditGenre(props) {
   };
 
   return (
-    <Form form={form} onFinish={handleSubmit} layout="vertical">
-        <Form.Item name="name" label="Genre Name" rules={NameRules}>
-              <Input />
-            </Form.Item>
+    <>
+     {user.role === 'admin' ? (
+      <Form form={form} onFinish={handleSubmit} layout="vertical">
+          <Form.Item name="name" label="Genre Name" rules={NameRules}>
+                <Input />
+              </Form.Item>
 
-            <Form.Item name="description" label="Description">
-              <Input />
-            </Form.Item>
+              <Form.Item name="description" label="Description">
+                <Input />
+              </Form.Item>
 
-        <Form.Item>
-        <Button type="primary" htmlType="submit" loading={loading}>
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+          <Form.Item>
+          <Button type="primary" htmlType="submit" loading={loading}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    ) : (
+      <h1>Access Denied</h1>
+    )}
+    </>
   );
 }
 

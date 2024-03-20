@@ -13,13 +13,7 @@ function EditBook(props) {
 
   useEffect(() => {
     // Fetch book details for editing
-    fetch(`http://localhost:3030/api/v1/books/${id}`,{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-      }
-    })
+    fetch(`http://localhost:3030/api/v1/books/${id}`)
       .then(response => response.json())
       .then(data => {
         // Set form fields with the data received
