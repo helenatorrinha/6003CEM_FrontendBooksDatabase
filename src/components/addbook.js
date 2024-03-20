@@ -60,8 +60,8 @@ class AddBookForm extends React.Component {
     })
     .catch(error => {
       console.error('An error occurred while submitting the form', error);
-      alert(`Error: ${error.message}`);
-      document.querySelector('form').reset(); // Optionally reset the form on failure
+      alert(`Error: ${error.error}`);
+      document.querySelector('form').reset(); // Reset the form 
     });
   }
 
