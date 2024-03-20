@@ -28,7 +28,6 @@ class BookGrid extends React.Component {
       return response.json();
     })
     .then(data => {
-      console.log(data);
       this.setState({ books: data, loading: false }); // Set books data and update loading state
     })
     .catch(error => {

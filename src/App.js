@@ -18,46 +18,17 @@ import AddBook from './components/addbook';
 import EditBook from './components/editbook';
 import Authors from './components/authors';
 import Author from './components/author';
+import EditAuthor from './components/editauthor';
+import AddAuthor from './components/addauthor';
 import Genres from './components/genres';
 import Genre from './components/genre'; 
+import  AddGenre from './components/addgenre';
+import EditGenre from './components/editgenre';
 import Login from './components/login';
 import Register from './components/register';
+import EditUser from './components/edituser';
 
 const { Header, Content, Footer } = Layout;
-
-// function App() {
-//   return (
-//     <Router>
-//       <Header>
-//         <Nav />
-//       </Header>
-
-//       <Content>
-//         <Switch>
-//         <Route path="/" exact children={<Home />} />
-//           <Route path="/login" children={<Login />} />
-//           <Route path="/register" children={<Register />} />
-//           <Route path="/books/add" children={<AddBook />} />
-//           <Route path="/books/edit/:id" children={<EditBook />} />
-//           <Route path="/books/:id" children={<Book />} />
-//           <Route path="/books" children={<Books />} />
-//           <Route path="/authors/:id" children={<Author />} />
-//           <Route path="/authors" children={<Authors />} />
-//           <Route path="/genres/:id" children={<Genre />} />
-//           <Route path="/genres" children={<Genres />} />
-//           <Route path="/users/:id" children={<Account />} />
-//           <Route path="/users" children={<Users />} />
-//         </Switch>
-//       </Content>
-
-//       <Footer style={{ textAlign: 'center' }}>Created for Web API Development</Footer>
-
-//     </Router>
-//   );
-// }
-
-// export default App;
-
 
 function NotFound() {
 	return (
@@ -92,6 +63,7 @@ class App extends React.Component {
 		// Remove the token from the session storage
 		sessionStorage.removeItem('token');
 		this.setState({ user: { loggedIn: false } });
+		alert("Logout successful");
 	}
 
 	render() {
@@ -118,10 +90,15 @@ class App extends React.Component {
                 <Route path="/books/edit/:id" children={<EditBook />} />
                 <Route path="/books/:id" children={<Book />} />
                 <Route path="/books" children={<Books />} />
+				<Route path="/authors/add" children={<AddAuthor />} />
+				<Route path="/authors/edit/:id" children={<EditAuthor />} />
                 <Route path="/authors/:id" children={<Author />} />
                 <Route path="/authors" children={<Authors />} />
+				<Route path="/genres/add" children={<AddGenre />} />
+				<Route path="/genres/edit/:id" children={<EditGenre />} />
                 <Route path="/genres/:id" children={<Genre />} />
                 <Route path="/genres" children={<Genres />} />
+				<Route path="/users/edit/:id" children={<EditUser />} />
                 <Route path="/users/:id" children={<Account />} />
                 <Route path="/users" children={<Users />} />
                 <Route path="*" element={<NotFound />} />

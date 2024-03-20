@@ -3,15 +3,23 @@ import { useParams } from 'react-router-dom';
 import { Form, Input, Button, message, DatePicker, InputNumber } from 'antd';
 import { status, json } from '../utilities/requestHandlers';
 import { withRouter } from 'react-router-dom'; 
+import UserContext from '../contexts/user';
 
 function EditBook(props) {
   const [form] = Form.useForm();
   const { id } = useParams(); // Get book ID from URL parameters
   const [loading, setLoading] = useState(false);
+  const { user } = React.useContext(UserContext);
 
   useEffect(() => {
     // Fetch book details for editing
-    fetch(`http://localhost:3030/api/v1/books/${id}`)
+    fetch(`http://localhost:3030/api/v1/books/${id}`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+      }
+    })
       .then(response => response.json())
       .then(data => {
         // Set form fields with the data received
@@ -37,6 +45,9 @@ function EditBook(props) {
     if (values.publicationDate) {
       values.publicationDate = values.publicationDate.format('YYYY-MM-DD');
     }
+    else {
+      delete values.publicationDate;
+    }
 
     if (values.author && values.author.includes(' ')) {
       const [firstName, lastName] = values.author.split(' ');
@@ -56,7 +67,6 @@ function EditBook(props) {
     .then(status)
     .then(json)
     .then(response => {
-      console.log(response)
       alert("Book Updated successfully!");
       props.history.push("/books/" + id);
     })
@@ -74,34 +84,40 @@ function EditBook(props) {
   };
 
   return (
-    <Form form={form} onFinish={handleSubmit} layout="vertical">
-      <Form.Item name="title" label="Title" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="author" label="Author" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="genre" label="Genre" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="publicationDate" label="Publication Date" rules={[{ required: true }]}>
-        <DatePicker format="YYYY-MM-DD" />
-      </Form.Item>
-      <Form.Item name="description" label="Description">
-        <Input.TextArea />
-      </Form.Item>
-      <Form.Item name="ISBN" label="ISBN" rules={[{ required: true }]}>
-        <InputNumber />
-      </Form.Item>
-      <Form.Item name="imageURL" label="Image URL">
-        <Input />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit" loading={loading}>
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+    <>
+     {user.role === 'admin' ? (
+      <Form form={form} onFinish={handleSubmit} layout="vertical">
+        <Form.Item name="title" label="Title" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="author" label="Author" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="genre" label="Genre" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="publicationDate" label="Publication Date">
+          <DatePicker format="YYYY-MM-DD" />
+        </Form.Item>
+        <Form.Item name="description" label="Description">
+          <Input.TextArea />
+        </Form.Item>
+        <Form.Item name="ISBN" label="ISBN" rules={[{ required: true }]}>
+          <InputNumber />
+        </Form.Item>
+        <Form.Item name="imageURL" label="Image URL">
+          <Input />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={loading}>
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+     ) : (
+       <h1>Access Denied</h1>
+     )}
+     </>
   );
 }
 

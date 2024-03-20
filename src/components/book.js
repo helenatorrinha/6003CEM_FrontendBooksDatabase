@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Image, Row, Col, Typography, Spin, Alert, Button } from 'antd';
-import defaultImage from '../data/unavailable.png'; // Ensure this path is correct for your project structure
+import defaultImage from '../data/unavailable.png'; 
 import UserContext from '../contexts/user';
 
 const { Title, Paragraph } = Typography;
@@ -67,7 +67,6 @@ class Book extends React.Component {
       })
       .then(() => {
         alert('Book deleted successfully.');
-        // Navigate back to book list or home page
         this.props.history.push('/');
       })
       .catch(error => {
@@ -121,9 +120,7 @@ class Book extends React.Component {
               <Button type="danger" onClick={this.handleDelete}>Delete</Button>
             </Col>
           </Row>
-          ): (
-            <h1>Access Denied</h1>
-          )}
+          ):null}
         </>
         </Row>
       </div>

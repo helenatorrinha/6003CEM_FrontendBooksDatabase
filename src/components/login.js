@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
     })
     .catch(error => {
       console.error('An error occurred while submitting the form', error);
-      alert(`Error: ${error.message}`);
+      alert('Error: ' + error.error);
       document.querySelector('form').reset(); // clear the form
       console.log('Login failed');
     });  
