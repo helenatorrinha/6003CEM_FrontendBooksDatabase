@@ -59,6 +59,33 @@ class Account extends React.Component {
     history.push(`/users/edit/${userId}`);
   }
 
+  handleDelete = () => {
+    if(window.confirm('Are you sure you want to delete this user?')) {
+      // Call delete API
+      const id = this.props.match.params.id;
+      fetch(`http://localhost:3030/api/v1/users/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + sessionStorage.getItem("token"),
+        },
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to delete author.');
+        }
+        return response.json();
+      })
+      .then(() => {
+        alert('Author deleted successfully.');
+        this.props.history.push('/');
+      })
+      .catch(error => {
+        alert(error.message);
+      });
+    }
+  }
+
   render() {
     const { account, loading, error } = this.state;
     const { user } = this.context; // Accessing user from the context
@@ -96,6 +123,15 @@ class Account extends React.Component {
               <Button type="primary" onClick={this.handleEdit}>Edit</Button>
             </Col>
           </Row>
+          <>
+          {user && user.role === "admin" ? (
+            <Row gutter={16} style={{ marginTop: '20px' }}>
+              <Col>
+                <Button type="danger" onClick={this.handleDelete}>Delete</Button>
+              </Col>
+            </Row>
+          ) : null }
+          </>
         </div>
         ) : (
           <h1>Access Denied</h1>
