@@ -13,7 +13,7 @@ function EditBook(props) {
 
   useEffect(() => {
     // Fetch book details for editing
-    fetch(`http://localhost:3030/api/v1/books/${id}`)
+    fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/books/${id}`)
       .then(response => response.json())
       .then(data => {
         // Set form fields with the data received
@@ -50,7 +50,7 @@ function EditBook(props) {
       delete values.author;
     }
 
-    fetch(`http://localhost:3030/api/v1/books/${id}`, {
+    fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/books/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
   login(values) {
     const {username, password} = values;
     console.log(`logging in user: ${username}`);
-    fetch('http://localhost:3030/api/v1/login', {
+    fetch('https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/login', {
         method: "POST",
         body: JSON.stringify({username, password}),
         headers: {

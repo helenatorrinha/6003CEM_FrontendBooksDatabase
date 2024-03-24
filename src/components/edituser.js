@@ -38,7 +38,7 @@ function EditUser(props) {
 
   useEffect(() => {
     // Fetch user details for editing
-    fetch(`http://localhost:3030/api/v1/users/${id}`, {
+    fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/users/${id}`, {
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ function EditUser(props) {
     if (!values.password) {
         delete values.password;
     }
-    fetch(`http://localhost:3030/api/v1/users/${id}`, {
+    fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/users/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

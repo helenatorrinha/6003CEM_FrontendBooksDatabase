@@ -32,7 +32,7 @@ class Account extends React.Component {
       this.setState({ error: 'Access Denied. No user ID provided.', loading: false });
       return; // Exit early if no user ID is provided
     }
-    fetch(`http://localhost:3030/api/v1/users/${id}`, {
+    fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/users/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ class Account extends React.Component {
     if(window.confirm('Are you sure you want to delete this user?')) {
       // Call delete API
       const id = this.props.match.params.id;
-      fetch(`http://localhost:3030/api/v1/users/${id}`, {
+      fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/users/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

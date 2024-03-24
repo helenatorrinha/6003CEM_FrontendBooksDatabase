@@ -18,7 +18,7 @@ function EditGenre(props) {
 
   useEffect(() => {
     // Fetch genre details for editing
-    fetch(`http://localhost:3030/api/v1/genres/${id}`)
+    fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/genres/${id}`)
       .then(response => response.json())
       .then(data => {
         // Set form fields with the data received
@@ -40,7 +40,7 @@ function EditGenre(props) {
     if (!values.description) {
         delete values.description;
     }
-    fetch(`http://localhost:3030/api/v1/genres/${id}`, {
+    fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/genres/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ function EditAuthor(props) {
 
   useEffect(() => {
     // Fetch author details for editing
-    fetch(`http://localhost:3030/api/v1/authors/${id}`)
+    fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/authors/${id}`)
       .then(response => response.json())
       .then(data => {
         // Set form fields with the data received
@@ -37,7 +37,7 @@ function EditAuthor(props) {
     if (!values.description) {
         delete values.description;
     }
-    fetch(`http://localhost:3030/api/v1/authors/${id}`, {
+    fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/authors/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

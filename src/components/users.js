@@ -14,7 +14,7 @@ class Users extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3030/api/v1/users', {
+    fetch('https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/users', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
