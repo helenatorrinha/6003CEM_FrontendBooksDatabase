@@ -37,7 +37,7 @@ function EditUser(props) {
   const { user } = React.useContext(UserContext);
 
   useEffect(() => {
-    // Fetch user details for editing
+    // Call get user by id API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/users/${id}`, {
         method: "GET",
         headers: {
@@ -72,6 +72,7 @@ function EditUser(props) {
     if (!values.password) {
         delete values.password;
     }
+    // Call put/update user API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/users/${id}`, {
       method: 'PUT',
       headers: {

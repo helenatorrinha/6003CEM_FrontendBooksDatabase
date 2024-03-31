@@ -44,6 +44,7 @@ class AddBookForm extends React.Component {
       publicationDate: publicationDate ? publicationDate.format('YYYY-MM-DD') : undefined,
     };
 
+    // Call post/add book API
     fetch('https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/books/', {
       method: "POST",
       body: JSON.stringify(data),

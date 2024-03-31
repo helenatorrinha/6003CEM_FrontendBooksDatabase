@@ -1,70 +1,25 @@
-# Getting Started with Create React App
+# Frontend SPA for Managing Books Database
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This frontend application provides a user-friendly interface for interacting with the backend API, allowing users to perform CRUD operations for books, authors, genres, reviews, and users.
 
-## Available Scripts
+## Features
+Books: Get, add, update, and delete book entries (which contain information such as title, author, genre, publication date, description, ISBN, and image).
+Authors: Manage authors by adding, updating, and deleting their details (which includes the id, first name, last name, description and avatar image).
+Genres: Categorize books by defining, updating, and deleting genres (which contains information about the id, name and description).
+Reviews: Provide and manage reviews for books, with options for creation, retrieval, updating, and deletion (which contains information about the book ID, user ID, message, creation, and modification timestamps).
+Users: Manage user profiles and permissions. Regular users can perform basic CRUD operations on their profiles and access book information, while administrators have additional authorization to manage users, books, genres, authors, and reviews.
 
-In the project directory, you can run:
+## Running the Application
+To run the frontend SPA, follow these steps:
 
-### `npm start`
+### Install Dependencies: 
+Run npm install to install all necessary dependencies.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Start the Application: 
+Run nodemon . on the back end api project.
+Run npm start to start the server. The application will be accessible in the web browser at https://squaremember-decimalvalid-3000.codio-box.uk
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Users and passwords
+All the users passwords in the database are: hashed_password
+Admin account: alice123
+Example user account: bob456

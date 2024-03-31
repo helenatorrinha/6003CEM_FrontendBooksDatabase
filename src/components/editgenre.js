@@ -17,7 +17,7 @@ function EditGenre(props) {
   const { user } = React.useContext(UserContext);
 
   useEffect(() => {
-    // Fetch genre details for editing
+    // Call get genre by id API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/genres/${id}`)
       .then(response => response.json())
       .then(data => {
@@ -40,6 +40,7 @@ function EditGenre(props) {
     if (!values.description) {
         delete values.description;
     }
+    // Call put/update genre API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/genres/${id}`, {
       method: 'PUT',
       headers: {

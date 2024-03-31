@@ -14,11 +14,11 @@ class AuthorGrid extends React.Component {
   }
 
   componentDidMount() {
+    // Call get authors API
     fetch('https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/authors', {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // Include the authorization token if your API requires authentication
         "Authorization": "Bearer " + sessionStorage.getItem("token"),
       },
     })

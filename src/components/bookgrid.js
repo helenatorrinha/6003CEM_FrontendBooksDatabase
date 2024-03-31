@@ -13,6 +13,7 @@ class BookGrid extends React.Component {
   }
 
   componentDidMount() {
+    // Call get books API
     fetch('https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/books', {
       method: "GET",
       headers: {

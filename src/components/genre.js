@@ -20,6 +20,7 @@ class Genre extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id; // available using withRouter()
     
+    // Call get genre by id API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/genres/${id}`, {
       method: "GET",
       headers: {
@@ -49,7 +50,7 @@ class Genre extends React.Component {
 
   handleDelete = () => {
     if(window.confirm('Are you sure you want to delete this genre?')) {
-      // Call delete API
+      // Call delete genre API
       const id = this.props.match.params.id;
       fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/genres/${id}`, {
         method: "DELETE",

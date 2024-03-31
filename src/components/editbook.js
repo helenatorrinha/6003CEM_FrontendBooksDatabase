@@ -12,7 +12,7 @@ function EditBook(props) {
   const { user } = React.useContext(UserContext);
 
   useEffect(() => {
-    // Fetch book details for editing
+    // Call get book by id API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/books/${id}`)
       .then(response => response.json())
       .then(data => {
@@ -35,7 +35,7 @@ function EditBook(props) {
   const handleSubmit = (values) => {
     Object.keys(values).forEach(key => values[key] === undefined || values[key] === null ? delete values[key] : {});
     values.ISBN = parseInt(values.ISBN)
-    // Format publicationDate and adjust author name if necessary
+
     if (values.publicationDate) {
       values.publicationDate = values.publicationDate.format('YYYY-MM-DD');
     }
@@ -50,6 +50,7 @@ function EditBook(props) {
       delete values.author;
     }
 
+    // Call put/update book API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/books/${id}`, {
       method: 'PUT',
       headers: {

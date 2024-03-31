@@ -12,7 +12,7 @@ function EditAuthor(props) {
   const { user } = React.useContext(UserContext);
 
   useEffect(() => {
-    // Fetch author details for editing
+    // Call get author by id API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/authors/${id}`)
       .then(response => response.json())
       .then(data => {
@@ -37,6 +37,7 @@ function EditAuthor(props) {
     if (!values.description) {
         delete values.description;
     }
+    // Call put/update author API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/authors/${id}`, {
       method: 'PUT',
       headers: {

@@ -14,6 +14,7 @@ class GenreGrid extends React.Component {
   }
 
   componentDidMount() {
+    // Call get genres API
     fetch('https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/genres', {
       method: "GET",
       headers: {

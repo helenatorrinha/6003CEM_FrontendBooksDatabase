@@ -32,6 +32,8 @@ class Account extends React.Component {
       this.setState({ error: 'Access Denied. No user ID provided.', loading: false });
       return; // Exit early if no user ID is provided
     }
+
+    // Call get user by id API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/users/${id}`, {
       method: "GET",
       headers: {

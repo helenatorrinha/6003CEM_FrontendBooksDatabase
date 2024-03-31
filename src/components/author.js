@@ -21,6 +21,7 @@ class Author extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id; // available using withRouter()
     
+    // Call get author by id API
     fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/authors/${id}`, {
       method: "GET",
       headers: {
@@ -50,7 +51,8 @@ class Author extends React.Component {
 
   handleDelete = () => {
     if(window.confirm('Are you sure you want to delete this author?')) {
-      // Call delete API
+      
+      // Call delete author API
       const id = this.props.match.params.id;
       fetch(`https://squaremember-decimalvalid-3030.codio-box.uk/api/v1/authors/${id}`, {
         method: "DELETE",
