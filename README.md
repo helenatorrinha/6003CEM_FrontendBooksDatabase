@@ -1,4 +1,4 @@
-# 6003CEM Frontend
+# 6003CEM Web API Development - Frontend
 # Frontend SPA for Managing Books Database
 
 This frontend application provides a user-friendly interface for interacting with the backend API, allowing users to perform CRUD operations for books, authors, genres, reviews, and users.
